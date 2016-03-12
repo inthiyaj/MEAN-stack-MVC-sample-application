@@ -6,8 +6,12 @@
   app.controller('myCtrl', function($scope, $http) {
 
       getMovies = function(){
-        $http.get("/movies")
-        .then(function(response) {
+        var config = {
+          method: "GET",
+          url: "/movies",
+          headers: {"Content-Type": "application/json;charset=utf-8"}
+        };
+        $http(config).then(function(response) {
             $scope.movies = response.data;
         });
       }
@@ -17,8 +21,13 @@
         && $scope.movieName !== ""
         && $scope.movieName !== undefined)
         {
-          $http.post("/movies", {title: $scope.movieName})
-          .then(function(response) {
+          var config = {
+            method: "POST",
+            url: "/movies",
+            data: {title: $scope.movieName},
+            headers: {"Content-Type": "application/json;charset=utf-8"}
+          };
+          $http(config).then(function(response) {
               getMovies();
               $scope.movieName = null;
           });
@@ -35,7 +44,6 @@
         $http(config).then(function(response) {
             getMovies();
         });
-
       }
 
       getMovies();
@@ -43,3 +51,15 @@
 
 
 })();
+
+
+// SENDING HTTP REQUESTS TO SERVER USING ANGULAR AND THE $HTTP MODULE
+// var config = {
+//   method: "<HTTP METHOD>",
+//   url: "<ROUTE>",
+//   data: <DATA IF NEEDED>,
+//   headers: {"Content-Type": "application/json;charset=utf-8"}
+// };
+// $http(config).then(function(response) {
+//    <WHAT TO DO AFTER RECIEVING RESPONSE>
+// });
