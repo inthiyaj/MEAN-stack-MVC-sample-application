@@ -1,0 +1,36 @@
+
+
+  <div ng-app="moviesApp">
+
+    <div ng-controller="movieCRUD">
+      <br>
+
+      <div class="col-md-8">
+        <a href="/#/" class="btn btn-primary">HOME</a>
+
+        <div class="active">
+            <h2>Movies' List</h2>
+            (testing MEAN stack CRUD)
+          <form ng-submit="addMovie()" class="navbar-form form-inline">
+            <div class="form-group">
+              <input style="width: 500px;" class="form-control" type="text" ng-model="movieName">
+            </div>
+            <input class="btn btn-default" type="submit" value="Add a new movie">
+          </form>
+        </div>
+
+        <br>
+
+        <div ng-repeat="x in movies" class="list-group">
+          <a class="list-group-item">
+            <span ng-bind="x.title"></span>
+            <button class="btn btn-danger pull-right" ng-click="removeMovie(x)">Remove</button>
+            <br>
+            <br>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>

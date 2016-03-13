@@ -17,10 +17,6 @@ app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(express.static(__dirname + '/public'));
-app.use("/jquery", express.static( __dirname + '/public/bower_components/jquery/dist/jquery.min.js'));
-app.use("/bootstrapjs", express.static( __dirname + '/public/bower_components/bootstrap/dist/js/bootstrap.min.js'));
-app.use("/angular", express.static( __dirname + '/public/bower_components/angular/angular.min.js'));
-app.use("/bootstrap", express.static( __dirname + '/public/bower_components/bootstrap/dist/css/bootstrap.min.css'));
 
 
 // Connect to MongoDB
@@ -36,6 +32,10 @@ mongoose.connection.once('open', function() {
     app.use(route, controller(app, route, express));
   });
 
+  app.get('/', function(req, res){
+    app.set('views', 'public');
+    res.render('index.html');
+  });
 
   console.log('Listening on port 3000...');
   app.listen(3000);
