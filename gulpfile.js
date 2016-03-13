@@ -34,7 +34,7 @@ gulp.task('start', function () {
     script: 'app.js',
     ext: 'js html',
     ignore: ['public/js/controllers.js', 'public/partials/'],
-    tasks: ['collect-angular-js', 'collect-angular-partials'],
+    tasks: ['collect-angular-js', 'collect-angular-partials', 'collect-assets'],
     env: { 'NODE_ENV': 'development' }
   })
 });
