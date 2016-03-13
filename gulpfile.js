@@ -4,8 +4,9 @@ var flatten = require('gulp-flatten');
 var runSequence = require('run-sequence');
 var nodemon = require('gulp-nodemon');
 
-var srcJs = ['AppModules/*/views/**/*.js','!AppModules/Home/**/*.js'];
-var srcHtml = ['AppModules/*/views/**/*.html','!AppModules/Home/**/*.html'];
+var srcJs = ['AppModules/*/views/**/*.js'];
+var srcHtml = ['AppModules/*/views/**/*.html'];
+var srcAssets = ['AppModules/*/views/assets/*'];
 
 gulp.task('collect-angular-js',function(){
          gulp.src(srcJs)
@@ -18,6 +19,13 @@ gulp.task('collect-angular-partials',function(){
          gulp.src(srcHtml)
              .pipe(flatten())
              .pipe(gulp.dest('public/partials'));
+
+});
+
+gulp.task('collect-assets',function(){
+         gulp.src(srcAssets)
+             .pipe(flatten())
+             .pipe(gulp.dest('public/assets'));
 
 });
 
@@ -36,6 +44,7 @@ gulp.task('default', function() {
   runSequence(
     'collect-angular-js',
     'collect-angular-partials',
+    'collect-assets',
     'start',
     function (error) {
       if (error) {
