@@ -4,7 +4,7 @@ module.exports = function(app, route, express) {
 
   app.get('/movies', function(req, res){
     app.models.movie.find({}, function(err, movies) {
-      res.json(movies);
+     res.json(movies);
     });
   });
 
